@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sadhvika Challa Cover Letter</title>
+  <style>
+    /* Reset & Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar {
+      position: fixed; /* Fix sidebar on the left */
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      background-color: #f8f8f8;
+      width: 80px;
+      height: 100vh;
+      border-right: 1px solid #ddd;
+      z-index: 1000;
+    }
+    .sidebar-icon {
+      position: relative; /* for tooltip positioning */
+      width: 48px;
+      height: 48px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+    .sidebar-icon:hover {
+      background-color: #e0e0e0;
+    }
+    .sidebar-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    /* Tooltip for sidebar icons */
+    .sidebar-icon .tooltip {
+      position: absolute;
+      left: 110%;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #000;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease;
+    }
+    .sidebar-icon:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* --- MAIN CONTENT WRAPPER --- */
+    .main {
+      margin-left: 80px; /* Leave space for the fixed sidebar */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- HEADER --- */
+    .header {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .header input {
+      flex: 1;
+      margin-left: 20px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px; /* More rectangular with rounded corners */
+      background-color: #efefef;
+      font-size: 14px;
+      /* Add magnifying glass icon */
+      background-image: url('icons/magnifying-glass.svg');
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+      background-position: 10px center;
+      padding-left: 36px; /* extra left padding for the icon */
+    }
+    .header input::placeholder {
+      color: #999;
+    }
+    /* Profile icon to the right of the search bar */
+    .profile-icon {
+      margin-left: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .profile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- BOARD-LIKE LINKS --- */
+    .boards {
+      padding: 10px 20px;
+      display: flex;
+      gap: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    .board-link {
+      position: relative;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-weight: bold; /* Bolded text */
+    }
+    .board-link:hover {
+      background-color: #f0f0f0;
+    }
+    /* Underline the first board link with a full width line */
+    .boards .board-link:first-child::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background-color: #333;
+    }
+
+    /* --- FEED LAYOUT --- */
+    .feed {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1;
+    }
+    .pin {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .pin:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .pin-image {
+      width: 100%;
+      height: 300px;
+      background-color: #d3d3d3;
+      display: block;
+    }
+    .pin-caption {
+      margin: 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      text-align: left; /* Left justified */
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    /* --- MODAL OVERLAY --- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px; /* added padding for responsiveness */
+      overflow: auto; /* in case content exceeds viewport */
+    }
+    .modal-content {
+      background-color: #fff;
+      width: 90%;
+      max-width: 1200px;
+      border-radius: 8px;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    .modal-left {
+      flex: 2;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-left img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .modal-right {
+      flex: 3;
+      padding: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .pin-info {
+      margin-bottom: 20px;
+    }
+    .pin-info h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .pin-info p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .pin-stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .pin-stats p {
+      font-size: 14px;
+      color: #777;
+    }
+    .pin-stats button {
+      background-color: #E60023;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .pin-comments h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .pin-comments p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-icon" title="Home">
+      <img src="icons/pinterest-color-svgrepo-com.svg" alt="Home" />
+      <span class="tooltip">Home</span>
+    </div>
+    <div class="sidebar-icon" title="Home">
+      <img src="icons/home-angle.svg" alt="Home" />
+      <span class="tooltip">Home</span>
+    </div>
+    <div class="sidebar-icon" title="Explore">
+      <img src="icons/explore.svg" alt="Explore" />
+      <span class="tooltip">Explore</span>
+    </div>
+    <div class="sidebar-icon" title="Create">
+      <img src="icons/create.svg" alt="Create" />
+      <span class="tooltip">Create</span>
+    </div>
+    <div class="sidebar-icon" title="Updates">
+      <img src="icons/notfication-1.svg" alt="Updates" />
+      <span class="tooltip">Updates</span>
+    </div>
+    <div class="sidebar-icon" title="Messages">
+      <img src="icons/messages.svg" alt="Messages" />
+      <span class="tooltip">Messages</span>
+    </div>
+    <div class="sidebar-icon" title="More Options">
+      <img src="icons/setting-gear.svg" alt="More Options" />
+      <span class="tooltip">More Options</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <!-- HEADER with Search Bar and Profile Icon -->
+    <div class="header">
+      <input type="text" placeholder="Search" />
+      <div class="profile-icon">
+        <img src="images/IMG_9735.png" alt="Profile" />
+      </div>
+    </div>
+
+    <!-- BOARD-LIKE LINKS -->
+    <div class="boards">
+      <span class="board-link">Sadhvika Challa</span>
+      <span class="board-link">Pinterest Cover Letter</span>
+      <span class="board-link">Software Engineer II</span>
+      <span class="board-link">Reference #: 20-1544</span>
+    </div>
+
+    <!-- FEED SECTION -->
+    <div class="feed">
+      <div class="pin" onclick="openModal('modal1')">
+        <div class="pin-image" style="background-image: url('images/end to end product development.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Product Development</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_8264.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin" onclick="openModal('modal2')">
+        <div class="pin-image" style="background-image: url('images/technical expertise.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Technical Expertise</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9649.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin" onclick="openModal('modal3')">
+        <div class="pin-image" style="background-image: url('images/visually rich user experiences.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Visually Rich User Experiences</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9279.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin" onclick="openModal('modal4')">
+        <div class="pin-image" style="background-image: url('images/adaptability and flexibilty.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Adaptability & Flexibility</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9294.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin" onclick="openModal('modal5')">
+        <div class="pin-image" style="background-image: url('images/innovative problem sovling.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Innovative Problem Solving</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9487.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin" onclick="openModal('modal6')">
+        <div class="pin-image" style="background-image: url('images/cross functional collaboration.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="pin-caption">Cross-Functional Collaboration</div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9498.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <div class="pin">
+        <div class="pin-image" style="background-image: url('images/IMG_9507.jpg'); background-size: cover; background-position: center;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS (one for each clickable pin) -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/end to end product development.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal1')">X</button>
+        <div class="pin-info">
+          <h2>End-to-End Product Development</h2>
+          <p>
+            &bull; <strong>Project Leadership:</strong> Spearheaded initiatives from brainstorming to market release, ensuring clear milestones at every phase.<br>
+            &bull; <strong>Rapid Prototyping:</strong> Leveraged iterative prototyping to quickly validate ideas and gather early user feedback.<br>
+            &bull; <strong>Quality Assurance:</strong> Implemented rigorous testing and A/B experiments to fine-tune features before final production.<br>
+            &bull; <strong>User-Centric Focus:</strong> Integrated real-time analytics and user insights to continuously improve product functionality and appeal.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>2.9k • Sadhvika Challa</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>22 Comments</h3>
+          <p>"Throughout my career, I’ve spearheaded projects from ideation to launch—overseeing rapid prototyping, executing detailed A/B tests, and managing smooth transitions to final production. This hands-on approach guarantees that every feature not only meets rigorous technical standards but also delivers a delightful user experience."</p>
+          <p>Add a comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/technical expertise.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal2')">X</button>
+        <div class="pin-info">
+          <h2>Technical Expertise</h2>
+          <p>
+            &bull; <strong>Diverse Language Proficiency:</strong> Mastered key programming languages like Python, Java, Node.js, and JavaScript, adapting solutions to diverse project needs.<br>
+            &bull; <strong>Cloud &amp; Infrastructure:</strong> Expert in managing scalable systems with AWS and Kubernetes, ensuring high availability and performance.<br>
+            &bull; <strong>Frontend &amp; Backend Mastery:</strong> Developed dynamic, responsive applications using React and SQL, while also architecting robust distributed systems.<br>
+            &bull; <strong>API Integration:</strong> Skilled in designing and consuming RESTful APIs and GraphQL endpoints to enhance interoperability and data exchange.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>1.2k • Pinterest Cover Letter</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>10 Comments</h3>
+          <p>"With robust experience in Python, Java, Kubernetes, Node.js, Git, AWS, React, JavaScript, SQL, Hadoop, Objective-C, RESTful APIs, GraphQL, and distributed systems, I have built scalable, efficient software solutions. My technical proficiency allows me to tackle complex challenges and innovate across the full software stack."</p>
+          <p>Add a comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/visually rich user experiences.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal3')">X</button>
+        <div class="pin-info">
+          <h2>Visually Rich User Experiences</h2>
+          <p>
+            &bull; <strong>UI/UX Design Integration:</strong> Collaborated closely with design teams to translate visual concepts into seamless, interactive interfaces.<br>
+            &bull; <strong>Aesthetic &amp; Functional Harmony:</strong> Balanced cutting-edge design trends with practical usability, ensuring a delightful user journey.<br>
+            &bull; <strong>Brand Consistency:</strong> Maintained strong visual standards and brand alignment across all features and platforms.<br>
+            &bull; <strong>Accessibility Focus:</strong> Developed interfaces that are both visually compelling and accessible to a diverse range of users.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>900 • Software Engineer II</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>15 Comments</h3>
+          <p>"I am deeply passionate about creating interfaces that are both visually compelling and functionally robust. My work consistently enhances product aesthetics and usability—aligning with Pinterest’s commitment to delivering inspiring, design-forward user experiences."</p>
+          <p>Add a comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/adaptability and flexibilty.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal4')">X</button>
+        <div class="pin-info">
+          <h2>Adaptability & Flexibility</h2>
+          <p>
+            &bull; <strong>Remote Work Proficiency:</strong> Thrived in telecommuting environments, maintaining productivity and strong communication across distributed teams.<br>
+            &bull; <strong>Agile Methodologies:</strong> Embraced agile workflows and flexible scheduling to adapt quickly to project changes.<br>
+            &bull; <strong>Cross-Time Zone Collaboration:</strong> Effectively managed asynchronous communication to bridge global team efforts.<br>
+            &bull; <strong>Self-Management:</strong> Demonstrated autonomy and proactive planning in fast-paced, evolving work settings.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>2.1k • Sadhvika Challa</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>30 Comments</h3>
+          <p>"Thriving in remote and agile work environments, I embrace the PinFlex philosophy with ease. My experience with telecommuting and flexible work settings ensures that I remain productive, collaborative, and responsive to evolving project needs regardless of location."</p>
+          <p>Add a comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/innovative problem sovling.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal5')">X</button>
+        <div class="pin-info">
+          <h2>Innovative Problem Solving</h2>
+          <p>
+            &bull; <strong>Early Challenge Identification:</strong> Proactively identified potential issues and addressed them before they escalated.<br>
+            &bull; <strong>Creative Algorithm Development:</strong> Designed and implemented innovative algorithms to solve complex technical problems.<br>
+            &bull; <strong>Iterative Optimization:</strong> Leveraged continuous testing and feedback loops to refine solutions and drive user engagement.<br>
+            &bull; <strong>Data-Driven Decisions:</strong> Utilized performance metrics and analytics to inform strategic technical decisions.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>3.5k • Pinterest Cover Letter</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>40 Comments</h3>
+          <p>"My approach to engineering is rooted in proactive innovation. By identifying challenges early and applying creative algorithms, I consistently devise solutions that resolve complex technical issues while driving engaging, user-centric outcomes."</p>
+          <p>Add a comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal6" class="modal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <img src="images/cross functional collaboration.jpg" alt="Placeholder">
+      </div>
+      <div class="modal-right">
+        <button class="close-btn" onclick="closeModal('modal6')">X</button>
+        <div class="pin-info">
+          <h2>Cross-Functional Collaboration</h2>
+          <p>
+            &bull; <strong>Interdisciplinary Communication:</strong> Built strong working relationships with design, product management, and QA teams.<br>
+            &bull; <strong>Agile Facilitation:</strong> Led agile ceremonies such as stand-ups, retrospectives, and sprint planning to ensure cohesive teamwork.<br>
+            &bull; <strong>Stakeholder Alignment:</strong> Ensured technical strategies aligned with overall business objectives and product visions.<br>
+            &bull; <strong>Collaborative Problem Solving:</strong> Engaged in brainstorming sessions and cross-team workshops to drive innovative solutions.<br><br>
+          </p>
+        </div>
+        <div class="pin-stats">
+          <p>500 • Software Engineer II</p>
+          <button>Save</button>
+        </div>
+        <div class="pin-comments">
+          <h3>12 Comments</h3>
+          <p>"I value the power of collaboration and have a proven track record of working seamlessly with cross-functional teams—including design, product management, and quality assurance. This cooperative mindset ensures that technical initiatives are aligned with broader business goals, resulting in cohesive and impactful product experiences."</p>
+          <p>Add Comment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for opening/closing modals -->
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = "flex";
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+    }
+  </script>
+</body>
+</html>
